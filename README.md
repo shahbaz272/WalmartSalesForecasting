@@ -1,5 +1,5 @@
 # Walmart Sales Forecasting
-4th position on Kaggle
+***4th position on Kaggle***
 
 ### Problem
 
