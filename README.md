@@ -1,6 +1,9 @@
 # Walmart Sales Forecasting
 ***4th position on Kaggle***
 
+# Walmart Sales Forecasting
+***4th position on Kaggle***
+
 **Problem**
 
 The aim of this project is to predict the weekly department-wise sales of 45 Walmart stores in the US using historical data
@@ -71,10 +74,7 @@ First, we input data & perform data wrangling. We conduct the following steps to
 
 _Note: The problem that we are trying to solve is fundamentally a time-series problem. To convert this into a conventional time series problem we need to find/develop/extract features that depict the Weekly_Sales trend over time._
 
-**During exploratory data analysis, we ask the following conclusions were observed:**
-
-
-
+During exploratory data analysis, we ask the following conclusions were observed:
 1. **Weekly_Sales trend is affected by some holidays but not all.**
     1. Thanksgiving and Christmas holidays affect Weekly Sales more than Superbowl and Labor Day.
     2. The sales sharply drop after all holidays except SuperBowl.
@@ -86,7 +86,7 @@ _Note: The problem that we are trying to solve is fundamentally a time-series pr
 
 
 
-2. **The target variable (Weekly_Sales) is NOT normally distributed. **
+2. **The target variable (Weekly_Sales) is NOT normally distributed.**
     1. The distribution of weekly_Sales is very skewed. This limits the effectiveness of most of the parametric machine learning models which rely on the assumption that the distribution is normal.
     ![alt_text](images/3.png "image_tooltip")
     2. Log transformed Weekly_Sales is a lot less skewed and seemed close to normal. However, this assumption was negated after performed a statistical test to prove normality. 
@@ -98,32 +98,37 @@ _Note: The problem that we are trying to solve is fundamentally a time-series pr
 
 
 3. **Most important features in predicting Weekly_Sales**
-    Upon performing some analysis on the data set the following features emerged as being the most reasonably correlated with Weekly_Sales. Most of these features were either extracted or engineered.
-        1. **CPI_Cat and Size_Cat**: CPI (Customer Propensity Index) and Size (of Store) were available in the training data as continuous values. These were discretized following along the rational that came from the Exploratory Data analysis.
-        2. **Which_holiday:** The training data had a column for ‘IsHoliday’. It was realized during EDA that each holiday had a different trend on the weekly sales. Some holidays had virtually no effect on the sales trends e.g. Labor Day as shown below. As a result feature was created for each holiday
-        3. **TillNext{Holiday}, SinceNext{Holiday}:** These features were created to depict the number of weeks since a particular holiday has passed and the number of weeks until the next holiday comes. These were created for 4 holidays thus a total of 8 features
-        4. **DateLagFeatures**: This feature depicts the Weekly Sales for each Store-Dept pair ‘**x’** weeks from the current week. 
-        5. **DateFeatures:** This features were derived from the date of the observation. These include, Quarter,Month,Year,WeekOfMonth,WeekOfYear
-        6. **Department_Contribution:** This feature is the ratio of each Department's average monthly sales with the Store's average monthly sales. The rational here is that the ratio would be a measure of how much the department's sales contribute to the sales of the store for each month.
-        7. **Store_dept_month_avg**: This is the average sale for that store,dept pair for that month
+Upon performing some analysis on the data set the following features emerged as being the most reasonably correlated with Weekly_Sales. Most of these features were either extracted or engineered.
+
+    **CPI_Cat and Size_Cat**: CPI (Customer Propensity Index) and Size (of Store) were available in the training data as continuous values. These were discretized following along the rational that came from the Exploratory Data analysis.
+        
+    **Which_holiday:** The training data had a column for ‘IsHoliday’. It was realized during EDA that each holiday had a different trend on the weekly sales. Some holidays had virtually no effect on the sales trends e.g. Labor Day as shown below. As a result feature was created for each holiday
+    **TillNext{Holiday}, SinceNext{Holiday}:** These features were created to depict the number of weeks since a particular holiday has passed and the number of weeks until the next holiday comes. These were created for 4 holidays thus a total of 8 features
+    
+    **DateLagFeatures**: This feature depicts the Weekly Sales for each Store-Dept pair ‘**x’** weeks from the current week.
+    
+    **DateFeatures:** This features were derived from the date of the observation. These include, Quarter,Month,Year,WeekOfMonth,WeekOfYear
+    
+    **Department_Contribution:** This feature is the ratio of each Department's average monthly sales with the Store's average monthly sales. The rational here is that the ratio would be a measure of how much the department's sales contribute to the sales of the store for each month.
+    
+    **Store_dept_month_avg**: This is the average sale for that store,dept pair for that month
+
 4. **Consistency of each department’s sales trends**
 
-        Upon visual inspection of the sales trend of a department across different Stores it was observed that most departments show similar trends if normalized against the stores total sales volume.
+    Upon visual inspection of the sales trend of a department across different Stores it was observed that most departments show similar trends if normalized against the stores total sales volume.
 
 5. **Redundant features**
 
-        It was observed that all the features other than the ones mentioned above showed very weak correlation with the Weekly_Sales and thus were discarded.
+It was observed that all the features other than the ones mentioned above showed very weak correlation with the Weekly_Sales and thus were discarded.
 
 
 **_Takeaways_**
 
 _From the analysis we can conclude the following:_
 
-
-
-        8. _Weekly Sales should be transformed to the logarithmic scale so that the distribution isn't as skewed_
-        9. _Weekly sales outliers problem is somewhat sorted by transforming to the logarithmic scale, however, there might still be need to look into outliers that appear after  the scale change. This can be done in the modeling process_
-        10. _Its best to use non parametric algorithms to solve the problem since they are less affected by the features or the target variable being not normal_
+1. _Weekly Sales should be transformed to the logarithmic scale so that the distribution isn't as skewed_
+2. _Weekly sales outliers problem is somewhat sorted by transforming to the logarithmic scale, however, there might still be need to look into outliers that appear after  the scale change. This can be done in the modeling process_
+3. _Its best to use non parametric algorithms to solve the problem since they are less affected by the features or the target variable being not normal_
 
 **Statistical Analysis**
 
