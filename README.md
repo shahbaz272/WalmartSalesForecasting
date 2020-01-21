@@ -1,8 +1,6 @@
 # Walmart Sales Forecasting
 ***4th position on Kaggle***
 
-**Walmart Sales Forecasting Final Report **
-
 **Problem**
 
 The aim of this project is to predict the weekly department-wise sales of 45 Walmart stores in the US using historical data
@@ -53,20 +51,14 @@ First, we input data & perform data wrangling. We conduct the following steps to
 
 1. **Joining the tables:**
     *   We join the tables together to get all the features in one table. The final table resulted in a total of 15 Features for 415,000 observations in the training data.
+
 2. **Missing values.**
     *   There were some features which had upto 70% of the value’s missing. Such features were made redundant.
     *   Other features with fewer missing values were zero-imputed.
     *   Some features were missing only in the test data.
 
 
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales0.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales0.png "image_tooltip")
-
-
-
+![alt_text](images/1.png "image_tooltip")
 
 3. **Negative Sales**
     *   It was observed that 0.305 percent of the target feature(Weekly_sales) were negative.
@@ -89,37 +81,30 @@ _Note: The problem that we are trying to solve is fundamentally a time-series pr
     3. There is an offset in the weekly_sales for christmas.
 
 
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales1.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales1.png "image_tooltip")
+![alt_text](images/2.png "image_tooltip")
 
 
 
 
 2. **The target variable (Weekly_Sales) is NOT normally distributed. **
-    4. The distribution of weekly_Sales is very skewed. This limits the effectiveness of most of the parametric machine learning models which rely on the assumption that the distribution is normal.
-    5. Log transformed Weekly_Sales is a lot less skewed and seemed close to normal. However, this assumption was negated after performed a statistical test to prove normality. 
+    1. The distribution of weekly_Sales is very skewed. This limits the effectiveness of most of the parametric machine learning models which rely on the assumption that the distribution is normal.
+    ![alt_text](images/3.png "image_tooltip")
+    2. Log transformed Weekly_Sales is a lot less skewed and seemed close to normal. However, this assumption was negated after performed a statistical test to prove normality. 
+   ![alt_text](images/4.png "image_tooltip")
 
 
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales2.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales2.png "image_tooltip")
 
 
 
 
 3. **Most important features in predicting Weekly_Sales**
-    6. Upon performing some analysis on the data set the following features emerged as being the most reasonably correlated with Weekly_Sales. Most of these features were either extracted or engineered.
+    Upon performing some analysis on the data set the following features emerged as being the most reasonably correlated with Weekly_Sales. Most of these features were either extracted or engineered.
         1. **CPI_Cat and Size_Cat**: CPI (Customer Propensity Index) and Size (of Store) were available in the training data as continuous values. These were discretized following along the rational that came from the Exploratory Data analysis.
         2. **Which_holiday:** The training data had a column for ‘IsHoliday’. It was realized during EDA that each holiday had a different trend on the weekly sales. Some holidays had virtually no effect on the sales trends e.g. Labor Day as shown below. As a result feature was created for each holiday
         3. **TillNext{Holiday}, SinceNext{Holiday}:** These features were created to depict the number of weeks since a particular holiday has passed and the number of weeks until the next holiday comes. These were created for 4 holidays thus a total of 8 features
         4. **DateLagFeatures**: This feature depicts the Weekly Sales for each Store-Dept pair ‘**x’** weeks from the current week. 
         5. **DateFeatures:** This features were derived from the date of the observation. These include, Quarter,Month,Year,WeekOfMonth,WeekOfYear
-        6. **Department_Contribution: **This feature is the ratio of each Department's average monthly sales with the Store's average monthly sales. The rational here is that the ratio would be a measure of how much the department's sales contribute to the sales of the store for each month.
+        6. **Department_Contribution:** This feature is the ratio of each Department's average monthly sales with the Store's average monthly sales. The rational here is that the ratio would be a measure of how much the department's sales contribute to the sales of the store for each month.
         7. **Store_dept_month_avg**: This is the average sale for that store,dept pair for that month
 4. **Consistency of each department’s sales trends**
 
@@ -188,20 +173,11 @@ This model is an Xtreme Gradient Boosting regressor trained on all of the traini
 
 The model was trained the XGBRegressor API. Sample weights were included in the training according to where the observation fell in a Holiday or not. The model for tuned using GridSearchCV using a 4-fold Time series train,test scheme as shown below:
 
-
-
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales3.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales3.png "image_tooltip")
+![alt_text](images/5.png "image_tooltip")
 The following is a plot of the top 20 most important features from the final model.
 
 
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales4.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales4.png "image_tooltip")
+![alt_text](images/6.png "image_tooltip")
 
 
 **Results: \
@@ -407,45 +383,6 @@ I implemented a post-forecast adjustment that said that if, in a given departmen
 </table>
 
 
-
-
-<p id="gdcalert6" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales5.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales5.png "image_tooltip")
-
-
-
-
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales6.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales6.png "image_tooltip")
-
-
-**Error Analysis**
-
-The following is a heatmap of the errors department-Store errors
-
-
-
-<p id="gdcalert8" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales7.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales7.png "image_tooltip")
-
-
-We can see that the models are not performing well for department 72. The maximum error is on store 10, department 72.
-
-
-
-<p id="gdcalert9" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/Walmart-Sales8.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/Walmart-Sales8.png "image_tooltip")
-
-
-On first sight it seems that the predictions are really good. The problem here is that it is a very high Sales pair. The average sales for this store is more than 10 times the average of all the stores. Thus, even a slight deviation from the actual values results in a high error. One remedy could be to train separate models for such stores.
 
 **Conclusion:**
 
