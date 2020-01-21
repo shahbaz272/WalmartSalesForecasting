@@ -1,8 +1,10 @@
 # Walmart Sales Forecasting
 ***4th position on Kaggle***
 
-# Walmart Sales Forecasting
-***4th position on Kaggle***
+This repo contains my approach to the Walmart Sales Forecasting problem.
+Instructions to run the code may be found in the 'Code' folder.
+
+Detailed reports and presentation may be found in the 'Docs' folder 
 
 **Problem**
 
