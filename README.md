@@ -390,7 +390,7 @@ I implemented a post-forecast adjustment that said that if, in a given departmen
 </table>
 
 
-**Error Analysis**
+**Error Analysis:**
 
 ![alt_text](images/7.png "image_tooltip")
 The plot above shows the department wise MSE. We can see that department 72 is contributing most to the error. Upon further investigation it was noted that department 72 is a very high volume store. Therefore even slight deviations of the predictions contribute a lot to the MSE in absolute terms.
@@ -399,8 +399,10 @@ The plot above shows the department wise MSE. We can see that department 72 is c
 ![alt_text](images/8.png "image_tooltip")
 For the Store wise MSE, we see that store 10 and 14 perform poorly.
 
+
 ![alt_text](images/9.png "image_tooltip")
 Above is a heatmap of the errors for each store,dept pair. We can see that department 72 is consistently high error for most stores. The highest error is for department 72,Store 10.
+
 
 ![alt_text](images/10.jpg "image_tooltip")
 On first sight it seems that the predictions are really good. The problem here is that it is a very high
